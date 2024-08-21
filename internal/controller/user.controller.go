@@ -18,8 +18,7 @@ func NewUserController() *UserController {
 
 func (uc UserController) GetAllUser(c *gin.Context) {
 	response.HTTPStatusCodeSuccess(c,
-		200,
-		uc.userService.GetInfoUserService(),
+		20001,
 		[]string{"tu ngo", "ngo tu", "xuan tu"},
 	)
 }
