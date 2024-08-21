@@ -1,13 +1,7 @@
 package main
 
-import (
-	"go-ecomm/internal/routers"
-)
+import "go-ecomm/internal/initialize"
 
 func main() {
-	r := routers.NewRouter()
-	err := r.Run(":8080")
-	if err != nil {
-		return
-	}
+	initialize.Run()
 }
