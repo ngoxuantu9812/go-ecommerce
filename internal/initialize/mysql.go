@@ -3,13 +3,14 @@ package initialize
 import (
 	"fmt"
 	"go-ecomm/global"
+	"go-ecomm/internal/po"
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"time"
 )
 
-func checkErrorPanic(err, errString string) {
+func checkErrorPanic(err error, errString string) {
 	if err != nil {
 		global.Logger.Error(errString, zap.Error(err))
 		panic(err)
@@ -29,6 +30,7 @@ func InitMysql() {
 
 	// set Pool
 	SetPool()
+	migrateTables()
 }
 
 func SetPool() {
@@ -41,4 +43,16 @@ func SetPool() {
 	sqlDb.SetConnMaxIdleTime(time.Duration(m.MaxIdleConns))
 	sqlDb.SetMaxOpenConns(m.MaxOpenConns)
 	sqlDb.SetConnMaxIdleTime(time.Duration(m.ConnMaxLifetime))
+}
+
+func migrateTables() {
+	err := global.Mdb.AutoMigrate(
+		&po.User{},
+		&po.Role{},
+	)
+
+	if err != nil {
+		fmt.Println("migrate tables failed", zap.Error(err))
+	}
+
 }

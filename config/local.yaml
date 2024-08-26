@@ -1,10 +1,11 @@
 server:
   port: 8080
+  mode: "prod"
 mysql:
   host: 127.0.0.1
   port: 3306
   username: root
-  password: root1234
+  password: mauFJcuf5dhRMQrjj
   dbname: shopdevgo
   maxIdleConns: 10
   maxOpenConns: 100
@@ -16,3 +17,10 @@ log:
   max_back_ups: 3
   max_age: 28
   compress: true
+redis:
+  host: 127.0.0.1
+  port: 6379
+  database: 0
+  pool_size: 100
+
+
