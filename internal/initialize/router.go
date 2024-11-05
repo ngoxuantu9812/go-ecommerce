@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-ecomm/global"
 	"go-ecomm/internal/routers"
+	"go-ecomm/response"
 )
 
 func InitRouter() *gin.Engine {
@@ -25,7 +26,12 @@ func InitRouter() *gin.Engine {
 
 	MainGroup := r.Group("/v1/2024")
 	{
-		MainGroup.GET("/check-status")
+		MainGroup.GET("/check-status", func(c *gin.Context) {
+			response.HTTPStatusCodeSuccess(c,
+				20001,
+				[]string{"tu ngo", "ngo tu", "xuan tu"},
+			)
+		})
 	}
 	{
 		userRouter.InitUserRouter(MainGroup)

@@ -23,20 +23,20 @@ type IUserService interface {
 	Register(email string, purpose string) int
 }
 
-type UserService struct {
+type userService struct {
 	userRepo repo.IUserRepository
 }
 
-func (us UserService) Register(email string, purpose string) int {
+func NewUserService(userRepo repo.IUserRepository) IUserService {
+	return &userService{
+		userRepo: userRepo,
+	}
+}
+
+func (us *userService) Register(email string, purpose string) int {
 	if us.userRepo.GetUserByEmail(email) {
 		return response.ErrUserHasExist
 	}
 
 	return response.ErrCodeSuccess
-}
-
-func NewUserService(userRepo repo.IUserRepository) IUserService {
-	return &UserService{
-		userRepo: userRepo,
-	}
 }

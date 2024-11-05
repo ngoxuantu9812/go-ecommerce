@@ -1,3 +1,5 @@
+//go:build wireinject
+
 package wire
 
 import (
@@ -11,7 +13,7 @@ func InitUserRouterHandle() (*controller.UserController, error) {
 	wire.Build(
 		service.NewUserService,
 		repo.NewUserRepository,
-		controller.UserController{},
+		controller.NewUserController,
 	)
 	return new(controller.UserController), nil
 }

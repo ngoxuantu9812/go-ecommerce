@@ -13,7 +13,7 @@ var ctx = context.Background()
 func InitRedis() {
 
 	r := global.Config.Redis
-
+	fmt.Println(1)
 	fmt.Println(fmt.Sprintf("%s:%d", r.Host, r.Port))
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", r.Host, r.Port),

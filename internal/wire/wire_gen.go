@@ -17,8 +17,6 @@ import (
 func InitUserRouterHandle() (*controller.UserController, error) {
 	iUserRepository := repo.NewUserRepository()
 	iUserService := service.NewUserService(iUserRepository)
-	userController := &controller.UserController{
-		userService: iUserService,
-	}
+	userController := controller.NewUserController(iUserService)
 	return userController, nil
 }
