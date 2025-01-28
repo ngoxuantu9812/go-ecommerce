@@ -2,7 +2,7 @@ package repo
 
 import (
 	"go-ecomm/global"
-	"go-ecomm/internal/model"
+	"go-ecomm/internal/database"
 )
 
 //type UserRepo struct{}
@@ -21,13 +21,21 @@ type IUserRepository interface {
 	GetUserByEmail(email string) bool
 }
 
-type userRepository struct{}
+type userRepository struct {
+	sqlc *database.Queries
+}
 
 func (ur *userRepository) GetUserByEmail(email string) bool {
-	row := global.Mdb.Table(TableNameGoCrmUser).Where("usr_email = ?", email).First(&model.GoCrmUser{}).RowsAffected
-	return row != NumberNull
+	//row := global.Mdb.Table(TableNameGoCrmUser).Where("usr_email = ?", email).First(&model.GoCrmUser{}).RowsAffected
+	user, err := ur.sqlc.GetUserByEmailSQLC(ctx, email)
+	if err != nil {
+		return false
+	}
+	return user.UsrID != 0
 }
 
 func NewUserRepository() IUserRepository {
-	return &userRepository{}
+	return &userRepository{
+		sqlc: database.New(global.Mdbc),
+	}
 }
