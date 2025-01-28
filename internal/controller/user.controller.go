@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"go-ecomm/internal/service"
+	"go-ecomm/internal/vo"
 	"go-ecomm/response"
 )
 
@@ -26,6 +28,11 @@ func (uc *UserController) GetAllUser(c *gin.Context) {
 }
 
 func (uc *UserController) Register(c *gin.Context) {
-	result := uc.userService.Register("", "")
+	var params vo.UserRegistrationRequest
+	if err := c.ShouldBind(&params); err != nil {
+		response.ErrorResponse(c, "Params are invalid")
+	}
+	fmt.Printf("Email params: %s", params)
+	result := uc.userService.Register(params.Email, params.Purpose)
 	response.HTTPStatusCodeSuccess(c, result, nil)
 }

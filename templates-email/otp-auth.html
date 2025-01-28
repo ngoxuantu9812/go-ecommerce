@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .email-header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 24px;
+        }
+        .email-body {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .otp-code {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .email-footer {
+            background-color: #f4f4f9;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #777777;
+        }
+        .email-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="email-header">
+        Verify Your Account
+    </div>
+    <div class="email-body">
+        <p>Hi Customer,</p>
+        <p>We received a request to verify your account. Use the OTP below to complete your verification:</p>
+        <div class="otp-code">{{.otp}}</div>
+        <p>If you didn’t request this, you can safely ignore this email.</p>
+        <p>Thanks,<br>Your Company Team</p>
+    </div>
+    <div class="email-footer">
+        <p>Need help? <a href="mailto:support@yourcompany.com">Contact Support</a></p>
+    </div>
+</div>
+</body>
+</html>

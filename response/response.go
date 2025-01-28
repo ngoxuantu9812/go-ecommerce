@@ -26,3 +26,11 @@ func HTTPStatusCodeError(c *gin.Context, statusCode int) {
 		Data:       nil,
 	})
 }
+
+func ErrorResponse(c *gin.Context, message string) {
+	c.JSON(http.StatusBadRequest, HTTPStatusCode{
+		StatusCode: 400,
+		Message:    message,
+		Data:       nil,
+	})
+}

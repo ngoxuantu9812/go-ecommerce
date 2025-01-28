@@ -2,7 +2,7 @@ server:
   port: 8080
   mode: "prod"
 mysql:
-  host: mysql_container
+  host: localhost
   port: 3306
   username: root
   password: mauFJcuf5dhRMQrjj
@@ -18,7 +18,7 @@ log:
   max_age: 28
   compress: true
 redis:
-  host: redis_container
+  host: localhost
   port: 6379
   database: 0
   pool_size: 100
