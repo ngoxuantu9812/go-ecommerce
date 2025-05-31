@@ -26,3 +26,9 @@ resetse:
 .PHONY: run upse downse resetse
 
 .PHONY: air
+
+create_migration:
+	@goose -dir=$(GOOSE_MIGRATION_DIR) create $(name) sql
+
+up_by_one:
+	@GOOSE_DRIVER=$(GOOSE_DRIVER) GOOSE_DBSTRING=$(GOOSE_DBSTRING) goose -dir=$(GOOSE_MIGRATION_DIR) up-by-one

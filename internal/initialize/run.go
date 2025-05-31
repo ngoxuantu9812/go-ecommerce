@@ -12,7 +12,9 @@ func Run() {
 	InitLogger()
 	global.Logger.Info("Config ok!!", zap.String("ok", "success"))
 	InitMysql()
+	InitMysqlC()
 	InitRedis()
+	InitKafka()
 	r := InitRouter()
 	r.Run(":8002")
 }

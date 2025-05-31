@@ -23,15 +23,15 @@ func InitMysqlC() {
 	fmt.Println(fmt.Sprintf("%s:%d", m.Host, m.Port))
 	var s = fmt.Sprintf(dsn, m.Username, m.Password, m.Host, m.Port, m.Dbname)
 	db, err := sql.Open("mysql", s)
-	checkErrorPanic(err, "Init Mysql initialization error")
+	checkErrorPanicC(err, "Init Mysql initialization error")
 	global.Logger.Info("Initialization successfully")
 	global.Mdbc = db
 
 	// set Pool
-	SetPool()
+	SetPoolC()
 	migrateTables()
 
-	genTableDAO()
+	genTableDAOC()
 }
 
 func SetPoolC() {
